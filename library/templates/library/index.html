@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+<body>
+    <!-- Header with Animation -->
+    <header>
+        <div class="logo">Library</div>
+        <nav>
+            <ul>
+                <li><a href="#intro">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#best-seller">Best Seller</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Sign Up</a>
+        </div>
+    </header>
+    
+    <section id="intro" class="intro-section">
+        <div class="header-content">
+            <h1>Welcome to BookWave Library</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <a href="#about" class="btn">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Library Section with Animation -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2>About Our Library</h2>
+            <p>
+                Welcome to our library! We are dedicated to providing a peaceful environment for readers and researchers alike. 
+                Our collection includes a vast array of books, e-books, and research material that can cater to all age groups and interests.
+            </p>
+            <p>
+                Our mission is to foster a love for reading and learning in the community. With modern facilities, knowledgeable staff, 
+                and a cozy atmosphere, we offer the best place for exploration and knowledge.
+            </p>
+        </div>
+    </section>
+
+    <!-- Service Section with Animation -->
+    <section class="service" id="services">
+        <h2>Our Services</h2>
+        <div class="service-container">
+            <div class="service-box animate-service">
+                <i class="icon">🔍</i>
+                <h3>Search Books</h3>
+                <p>Easily find the books you're looking for with our advanced search tool.</p>
+            </div>
+            <div class="service-box animate-service">
+                <i class="icon">💵</i>
+                <h3>Buy Books</h3>
+                <p>Purchase your favorite books with affordable and transparent pricing.</p>
+            </div>
+            <div class="service-box animate-service">
+                <i class="icon">🚚</i>
+                <h3>Book Rental</h3>
+                <p>Enjoy a convenient rental service with hassle-free returns within 30 days.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Seller Section -->
+    <section class="best-seller" id="best-seller">
+        <h2>Best Seller Books</h2>
+        <div class="best-seller-container">
+            <div class="best-seller-box">
+                <img src="https://m.media-amazon.com/images/I/91zU8vKrk+L._AC_UF1000,1000_QL80_.jpg" alt="Best Seller Book 1" />
+                <h3>Book Title 1</h3>
+                <p>Book description goes here.</p>
+                <div class="price">$19.99</div>
+                <a href="{% url 'login' %}" class="buy-btn">Buy Now</a>
+            </div>
+            <div class="best-seller-box">
+                <img src="https://m.media-amazon.com/images/I/71pys4B4OVL._AC_UF1000,1000_QL80_.jpg" alt="Best Seller Book 2" />
+                <h3>Book Title 2</h3>
+                <p>Book description goes here.</p>
+                <div class="price">$24.99</div>
+                <a href="{% url 'login' %}" class="buy-btn">Buy Now</a>
+            </div>
+            <div class="best-seller-box">
+                <img src="https://m.media-amazon.com/images/I/81FX4OK2njL._SL1500_.jpg" alt="Best Seller Book 3" />
+                <h3>Book Title 3</h3>
+                <p>Book description goes here.</p>
+                <div class="price">$15.99</div>
+                <a href="{% url 'login' %}" class="buy-btn">Buy Now</a>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Contact Me Section with Form and Animation -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2>Contact Us</h2>
+            <p>If you have any inquiries or want to reach out to us, please fill in the form below. We’ll get back to you as soon as possible.</p>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-nav">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Where can you find us?</h3>
+                <p>1234 Book St, City, Country</p>
+            </div>
+            <div class="footer-subscribe">
+                <h3>Subscribe</h3>
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
