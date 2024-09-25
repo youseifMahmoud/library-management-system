@@ -5,10 +5,440 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management System</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="{% static 'js/script.js' %}" defer></script>
 </head>
+<style>
+    /* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7); /* Slightly transparent */
+    padding: 10px 3px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px); /* Adds a nice blur effect */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Optional: adds a shadow for better visibility */
+}
+
+header .logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #45a049;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #45a049; /* Hover effect color */
+}
+
+/* Login and Sign Up Buttons in Header */
+header .auth-buttons a {
+    margin-left: 15px;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-block; /* Ensure buttons are inline */
+}
+
+header .auth-buttons a:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+}
+
+/* Hero Section (Intro) */
+.intro-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://cdn.prod.website-files.com/604a97c70aee09eed25ce991/61897a35583a9b51db018d3e_MartinPublicSeating-97560-Importance-School-Library-blogbanner1.jpg') no-repeat center center/cover;
+    height: 100vh; /* Full screen height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    padding-top: 100px; /* Ensures content doesn’t overlap header */
+}
+
+/* Header Content */
+.header-content {
+    max-width: 600px;
+    text-align: center;
+    animation: fadeIn 2s ease-in;
+}
+
+.header-content h1 {
+    font-size: 60px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.header-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Button Styles */
+.header-content .btn {
+    padding: 15px 40px;
+    margin-left: 5px;
+    background-color: #45a049;
+    color: white;
+    border: none;
+    font-size: 18px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.header-content .btn:hover {
+    background-color: #ff3f31;
+    box-shadow: 0px 8px 15px rgba(255, 111, 97, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+
+/* About Section */
+.about-section {
+    background-color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+    animation: fadeInUp 1s ease-in-out;
+    border-top: 1px solid #ddd;
+}
+
+.about-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.about-section p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Best Seller Section */
+.best-seller {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.best-seller h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: #333;
+}
+
+.best-seller-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.best-seller-box {
+    width: 30%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.best-seller-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.best-seller-box img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.best-seller-box h3 {
+    font-size: 22px;
+    margin: 15px 0;
+    color: #333;
+}
+
+.best-seller-box p {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.best-seller-box .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+/* Buy Now Button */
+.best-seller-box .buy-btn {
+    padding: 12px 30px;
+    background-color: #45a049;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.best-seller-box .buy-btn:hover {
+    background-color: #ff3f31;
+    box-shadow: 0px 8px 15px rgba(255, 111, 97, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: #333;
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.contact-section p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #ccc;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #666;
+}
+
+.contact-form button {
+    background-color: #45a049;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #ff3f31;
+}
+
+/* Service Section */
+.service {
+    padding: 50px;
+    text-align: center;
+    background-color: #f9f9f9;
+    animation: slideIn 1.5s ease-in-out;
+}
+
+.service-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.service-box {
+    width: 30%;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1.5s ease;
+}
+
+.service-box i {
+    font-size: 50px;
+    margin-bottom: 15px;
+    display: block;
+    color: #0099ff;
+}
+
+.service-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.service-box p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #222;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 5px solid #ff6f61;
+    margin-top: 20px;
+}
+
+footer .footer-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: #ff6f61;
+}
+
+footer p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 20px;
+}
+
+footer p a {
+    color: #ff6f61;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+</style>
 <body>
     <!-- Header with Animation -->
     <header>
@@ -145,5 +575,47 @@
         </div>
     </footer>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    console.log("Page loaded");
+
+    // Fade-in effect for service boxes
+    const serviceBoxes = document.querySelectorAll('.service-box');
+    serviceBoxes.forEach((box, index) => {
+        box.style.opacity = 0; // Start invisible
+        box.style.transform = 'translateY(20px)'; // Start slightly lower than original position
+        setTimeout(() => {
+            box.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; // Smooth transition for both opacity and position
+            box.style.opacity = 1; // Fade in to full opacity
+            box.style.transform = 'translateY(0)'; // Move to original position (no vertical offset)
+        }, index * 200); // Apply staggered delay, so each box fades in after the previous one
+    });
+
+    // Hover effect for service boxes
+    serviceBoxes.forEach(box => {
+        box.addEventListener('mouseover', () => {
+            box.style.transform = 'scale(1.05)'; // Scale up slightly when hovered
+            box.style.transition = 'transform 0.3s ease'; // Smooth transition for scaling effect
+        });
+        box.addEventListener('mouseout', () => {
+            box.style.transform = 'scale(1)'; // Scale back to normal when hover ends
+        });
+    });
+
+    // Smooth scrolling for navigation links
+    const links = document.querySelectorAll('nav ul li a');
+    links.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            const targetId = this.getAttribute('href'); // Get the target section ID from the href
+            const targetElement = document.querySelector(targetId); // Find the target section
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' }); // Scroll smoothly to the section
+                }
+            });
+        });
+    });
+
+</script>
 </body>
 </html>
