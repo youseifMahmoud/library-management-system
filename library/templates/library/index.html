@@ -440,57 +440,75 @@ footer p a:hover {
 
 /* General Styles for mobile responsiveness */
 @media only screen and (max-width: 768px) {
-    /* Adjust body padding for small screens */
+    /* General adjustments */
     body {
-        padding: 0 15px;
+        padding: 0;
     }
 
-    /* Make header's layout vertical for smaller screens */
+    /* Header Styles for Mobile */
     header {
-        flex-direction: column;
-        text-align: center;
         padding: 10px;
+        height: auto; /* Let the height adjust automatically */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items */
     }
 
+    /* Reduce the logo size */
     header .logo {
-        font-size: 24px; /* Reduce logo font size */
-        margin-bottom: 10px; /* Add space between logo and nav */
+        font-size: 18px;
+        margin-bottom: 10px; /* Add spacing between logo and nav */
     }
 
+    /* Reduce navigation link size */
     nav ul {
-        flex-direction: column; /* Stack navigation items */
-        align-items: center;
+        display: flex;
+        flex-direction: row; /* Keep the nav links horizontal */
+        justify-content: center; /* Center the links */
+        margin-bottom: 10px; /* Add spacing between nav and buttons */
     }
 
     nav ul li {
-        margin: 10px 0; /* Add space between items */
+        margin-left: 15px; /* Decrease space between nav items */
     }
 
-    /* Adjust login/signup button size for small screens */
+    nav ul li a {
+        font-size: 14px; /* Smaller font size for nav links */
+    }
+
+    /* Adjust auth buttons (Login/Sign Up) */
+    header .auth-buttons {
+        display: flex;
+        justify-content: center; /* Center buttons */
+        width: 100%;
+    }
+
     header .auth-buttons a {
-        padding: 8px 15px;
-        font-size: 12px;
+        margin-left: 10px; /* Smaller spacing */
+        padding: 8px 15px; /* Adjust button padding for smaller screens */
+        font-size: 12px; /* Smaller button text */
+        width: auto;
     }
 
-    /* Make intro section text size smaller */
-    .intro-section {
-        height: auto; /* Allow content to define height */
-        padding-top: 80px; /* Reduce top padding */
-        padding-bottom: 50px; /* Add padding at the bottom */
+    /* Intro Section adjustments for mobile */
+    #intro {
+        padding: 20px; /* Reduce padding for mobile */
+        text-align: center; /* Center text for mobile */
     }
 
-    .header-content h1 {
-        font-size: 40px; /* Reduce title font size */
+    #intro .header-content h1 {
+        font-size: 24px; /* Smaller heading for mobile */
+        margin-bottom: 10px; /* Adjust space below heading */
     }
 
-    .header-content p {
-        font-size: 16px; /* Reduce paragraph font size */
+    #intro .header-content p {
+        font-size: 14px; /* Smaller text for paragraph */
+        margin-bottom: 15px; /* Adjust space below paragraph */
+        line-height: 1.5; /* Adjust line height for better readability */
     }
 
-    /* Button styles on mobile */
-    .header-content .btn {
-        padding: 10px 20px;
-        font-size: 16px;
+    #intro .header-content .btn {
+        padding: 10px 20px; /* Smaller button size for mobile */
+        font-size: 14px; /* Smaller font size for button */
     }
 
     /* Make about section text responsive */
@@ -567,11 +585,11 @@ footer p a:hover {
             <a href="{% url 'signup' %}">Sign Up</a>
         </div>
     </header>
-    
+
     <section id="intro" class="intro-section">
         <div class="header-content">
-            <h1>Welcome to BookWave Library</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h1>Welcome to Library Management System</h1>
+            <p>Manage and explore a vast collection of books and resources with ease. Whether you're a student or an avid reader, our system ensures quick access to all your library needs.</p>
             <a href="#about" class="btn">Learn More</a>
         </div>
     </section>
@@ -581,11 +599,11 @@ footer p a:hover {
         <div class="about-container">
             <h2>About Our Library</h2>
             <p>
-                Welcome to our library! We are dedicated to providing a peaceful environment for readers and researchers alike. 
+                Welcome to our library! We are dedicated to providing a peaceful environment for readers and researchers alike.
                 Our collection includes a vast array of books, e-books, and research material that can cater to all age groups and interests.
             </p>
             <p>
-                Our mission is to foster a love for reading and learning in the community. With modern facilities, knowledgeable staff, 
+                Our mission is to foster a love for reading and learning in the community. With modern facilities, knowledgeable staff,
                 and a cozy atmosphere, we offer the best place for exploration and knowledge.
             </p>
         </div>
@@ -640,14 +658,14 @@ footer p a:hover {
             </div>
         </div>
     </section>
-    
+
 
     <!-- Contact Me Section with Form and Animation -->
     <section id="contact" class="contact-section">
         <div class="contact-container">
             <h2>Contact Us</h2>
             <p>If you have any inquiries or want to reach out to us, please fill in the form below. We’ll get back to you as soon as possible.</p>
-            
+
             <form class="contact-form">
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" required>
