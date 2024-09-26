@@ -438,6 +438,117 @@ footer p a:hover {
     }
 }
 
+/* General Styles for mobile responsiveness */
+@media only screen and (max-width: 768px) {
+    /* Adjust body padding for small screens */
+    body {
+        padding: 0 15px;
+    }
+
+    /* Make header's layout vertical for smaller screens */
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    header .logo {
+        font-size: 24px; /* Reduce logo font size */
+        margin-bottom: 10px; /* Add space between logo and nav */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack navigation items */
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Add space between items */
+    }
+
+    /* Adjust login/signup button size for small screens */
+    header .auth-buttons a {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+
+    /* Make intro section text size smaller */
+    .intro-section {
+        height: auto; /* Allow content to define height */
+        padding-top: 80px; /* Reduce top padding */
+        padding-bottom: 50px; /* Add padding at the bottom */
+    }
+
+    .header-content h1 {
+        font-size: 40px; /* Reduce title font size */
+    }
+
+    .header-content p {
+        font-size: 16px; /* Reduce paragraph font size */
+    }
+
+    /* Button styles on mobile */
+    .header-content .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    /* Make about section text responsive */
+    .about-section {
+        padding: 60px 15px; /* Reduce padding */
+    }
+
+    .about-section h2 {
+        font-size: 2em; /* Reduce title size */
+    }
+
+    .about-section p {
+        font-size: 1em; /* Adjust paragraph size */
+    }
+
+    /* Best Seller Section: Adjust card width for small screens */
+    .best-seller-container {
+        flex-direction: column; /* Stack boxes vertically */
+        align-items: center;
+    }
+
+    .best-seller-box {
+        width: 90%; /* Make boxes full-width */
+        margin-bottom: 20px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+        padding: 60px 15px; /* Reduce padding */
+    }
+
+    /* Service Section: Stack service boxes vertically */
+    .service-container {
+        flex-direction: column; /* Stack services */
+        align-items: center;
+    }
+
+    .service-box {
+        width: 90%; /* Full-width on mobile */
+        margin-bottom: 20px;
+    }
+
+    /* Footer adjustments */
+    footer {
+        padding: 30px 15px;
+    }
+
+    footer ul {
+        flex-direction: column;
+        gap: 10px; /* Smaller gaps between links */
+    }
+
+    footer p {
+        font-size: 14px; /* Smaller font size for text */
+    }
+}
+
+
 </style>
 <body>
     <!-- Header with Animation -->
