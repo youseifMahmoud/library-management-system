@@ -132,9 +132,13 @@ Templates are located in the `library/templates/library/` directory. The key tem
    │   │       ├── edit_author.html    # Edit author page
    │   │       └── delete_author.html  # Delete author confirmation page
    │   ├── 📁 static/                  # Static files (CSS, JS)
-   │   │   └── 📁 css/                 # CSS files
-   │   │       └── styles.css          # General stylesheet
-   │   │       📁 js/                  # JS files
+   │   │   ├── 📁 css/                 # CSS files
+<<<<<<< HEAD
+   │   │   │    └── styles.css          # General stylesheet
+=======
+   │   │   │   └── styles.css          # General stylesheet
+>>>>>>> 78e3d08ff4c0282ab125410502f76ae8405280fb
+   │   │   └── 📁 js/                  # JS files
    │   │       └── main.js              # General 
    │   ├── 📄 admin.py                 # Admin configurations
    │   ├── 📄 apps.py                  # Application settings
@@ -158,5 +162,6 @@ Templates are located in the `library/templates/library/` directory. The key tem
 
 ## 📝 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
