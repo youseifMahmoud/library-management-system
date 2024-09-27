@@ -125,9 +125,9 @@ Templates are located in the `library/templates/library/` directory. The key tem
    │   │       ├── edit_author.html    # Edit author page
    │   │       └── delete_author.html  # Delete author confirmation page
    │   ├── 📁 static/                  # Static files (CSS, JS)
-   │   │   └── 📁 css/                 # CSS files
-   │   │       └── styles.css          # General stylesheet
-   │   │       📁 js/                  # JS files
+   │   │   ├── 📁 css/                 # CSS files
+   │   │   │   └── styles.css          # General stylesheet
+   │   │   └── 📁 js/                  # JS files
    │   │       └── main.js              # General 
    │   ├── 📄 admin.py                 # Admin configurations
    │   ├── 📄 apps.py                  # Application settings
