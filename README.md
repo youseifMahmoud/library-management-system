@@ -21,13 +21,20 @@ This project is a Django-based Library Management System. It allows users (both 
 
 Follow the steps below to set up and run the project locally:
 
+## 🛠️ Tech Stack
+
+- **Backend:** Django (Python)
+- **Frontend:** HTML, CSS, JavaScript
+- **Database:** PostgreSQL
+- **Version Control:** Git/GitHub
+
 ### Prerequisites
 
 - Python 3.x
 - Django 4.x
 - PostgreSQL (or any other preferred database)
 
-### Setup
+### 🛠️ Setup
 
 1. **Clone the repository**:
     ```bash
@@ -149,7 +156,7 @@ Templates are located in the `library/templates/library/` directory. The key tem
 
 ```
 
-## License
+## 📝 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
