@@ -16,6 +16,7 @@ class Book(models.Model):
     is_for_rent = models.BooleanField(default=True)
     is_sold = models.BooleanField(default=False)
     is_rented = models.BooleanField(default=False)
+    photo = models.ImageField(upload_to='books/', blank=True, null=True)
 
     def __str__(self):
         return self.title

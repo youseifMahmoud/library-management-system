@@ -9,13 +9,11 @@ def index(request):
     return render(request, 'library/index.html')
 
 def home(request):
-    # Redirect to login if not authenticated
     if not request.user.is_authenticated:
         return redirect('login')
-    
-    # Forms for adding books and authors
+
     if request.method == 'POST':
-        book_form = BookForm(request.POST)
+        book_form = BookForm(request.POST, request.FILES)  
         author_form = AuthorForm(request.POST)
         
         if book_form.is_valid():
@@ -29,23 +27,14 @@ def home(request):
         book_form = BookForm()
         author_form = AuthorForm()
 
-    # Handle search queries for books
     query_books = request.GET.get('q_books', '')
-    if query_books:
-        books = Book.objects.filter(Q(title__icontains=query_books))
-    else:
-        books = Book.objects.all()
+    books = Book.objects.filter(Q(title__icontains=query_books)) if query_books else Book.objects.all()
 
-    # Handle search queries for authors
     query_authors = request.GET.get('q_authors', '')
-    if query_authors:
-        authors = Author.objects.filter(Q(name__icontains=query_authors))
-    else:
-        authors = Author.objects.all()
+    authors = Author.objects.filter(Q(name__icontains=query_authors)) if query_authors else Author.objects.all()
 
-    # Pass the required data to the template
     return render(request, 'library/home.html', {
-        'username': request.user.username,  
+        'username': request.user.username,
         'book_form': book_form,
         'author_form': author_form,
         'books': books,
