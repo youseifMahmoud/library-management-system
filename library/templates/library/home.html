@@ -193,9 +193,25 @@
         
                 <!-- ISBN field -->
                 <div class="form-group row">
-                    <label for="id_isbn" class="col-sm-2 col-form-label">Isbn:</label>
+                    <label for="id_isbn" class="col-sm-2 col-form-label">ISBN:</label>
                     <div class="col-sm-10">
                         {{ book_form.isbn|add_class:"form-control" }}
+                    </div>
+                </div>
+        
+                <!-- Count field (Number of copies) -->
+                <div class="form-group row">
+                    <label for="id_count" class="col-sm-2 col-form-label">Number of Copies:</label>
+                    <div class="col-sm-10">
+                        {{ book_form.count|add_class:"form-control" }}
+                    </div>
+                </div>
+        
+                <!-- Price field -->
+                <div class="form-group row">
+                    <label for="id_price" class="col-sm-2 col-form-label">Price:</label>
+                    <div class="col-sm-10">
+                        {{ book_form.price|add_class:"form-control" }}
                     </div>
                 </div>
         
@@ -227,15 +243,30 @@
                     <h3>{{ book.title }}</h3>
                     <p><strong>Author:</strong> {{ book.author.name }}</p>
                     <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+        
+                    <!-- Display count -->
+                    <p><strong>Copies Available:</strong> {{ book.count }}</p>
+        
+                    <!-- Display price -->
+                    <p><strong>Price:</strong> ${{ book.price }}</p>
+        
+                    <!-- Display status -->
                     <p class="status">
                         {% if book.is_sold %}
                             <span style="color: red;">(Sold)</span>
                         {% elif book.is_rented %}
                             <span style="color: orange;">(Currently Rented)</span>
                         {% else %}
-                            <span style="color: green;">Available</span>
+                            {% if book.is_for_sale %}
+                                <span style="color: green;">Available for Sale</span>
+                            {% endif %}
+                            <br>
+                            {% if book.is_for_rent %}
+                                <span style="color: green;">Available for Rent</span>
+                            {% endif %}
                         {% endif %}
                     </p>
+        
                     <div class="edit-delete-buttons">
                         <a href="{% url 'edit_book' book.pk %}">Edit</a> |
                         <a href="{% url 'delete_book' book.pk %}">Delete</a>

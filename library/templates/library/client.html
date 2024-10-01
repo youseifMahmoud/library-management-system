@@ -188,6 +188,20 @@
         .return-button:hover {
             background-color: #dc2020; /* Darker red on hover */
         }
+        .detail-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff; /* Blue for View Details */
+            color: white;
+            text-decoration: none; /* Remove underline */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .detail-button:hover {
+            background-color: #0069d9; /* Darker blue on hover */
+        }
 
         footer {
             text-align: center;
@@ -223,33 +237,43 @@
         <h2>Search Results</h2>
         <div class="book-cards">
             {% for book in books %}
-            <div class="book-card">
-                <img src="{{ book.image.url }}" alt="{{ book.title }}">
-                <h3>{{ book.title }}</h3>
-                <p>by {{ book.author.name }}</p>
-                <p>ISBN: {{ book.isbn }}</p>
-                <div class="action-buttons">
-                    {% if book.is_sold %}
-                    <span style="color: red;">(Sold)</span>
-                    {% elif book.is_rented %}
-                    <span style="color: orange;">(Currently Rented)</span>
-                    <form method="POST" action="{% url 'return_book' book.id %}" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="return-button">Return Book</button>
-                    </form>
-                    {% else %}
-                    {% if book.is_for_sale %}
-                        <button data-url="{% url 'buy_or_rent_book' book.id 'buy' %}" class="buy-button" onclick="location.href=this.getAttribute('data-url')">Buy</button>
-                    {% endif %}
-                    {% if book.is_for_rent %}
-                        <button data-url="{% url 'buy_or_rent_book' book.id 'rent' %}" class="rent-button" onclick="location.href=this.getAttribute('data-url')">Rent</button>
-                    {% endif %}
-
-                    {% endif %}
+                <div class="book-card">
+                    <img src="{{ book.image.url }}" alt="{{ book.title }}">
+                    <h3>{{ book.title }}</h3>
+                    <p>by {{ book.author.name }}</p>
+                    <p>ISBN: {{ book.isbn }}</p>
+                    <p>Price: {{ book.price }}</p>
+                    <p>Available copies: {{ book.count }}</p>
+                    <div class="action-buttons">
+                        {% if book.is_sold %}
+                            <span style="color: red;">Out of Stock</span>
+                        {% elif book.is_rented %}
+                            <span style="color: green;">You rented this book.</span>
+                            <form method="POST" action="{% url 'return_book' book.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="return-button">Return Book</button>
+                            </form>
+                        {% else %}
+                            {% if book.count > 0 %}
+                                <form method="POST" action="{% url 'rent_book' book.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="rent-button">Rent Book</button>
+                                </form>
+                                <form method="GET" action="{% url 'process_payment' book.id %}" style="display:inline;">
+                                    <button type="submit" class="buy-button">Buy Book</button>
+                                </form>
+                            {% else %}
+                                <span style="color: red;">Out of Stock</span>
+                            {% endif %}
+                        {% endif %}
+                        <br>
+                        <br>
+                        <!-- Button to go to book detail page -->
+                        <a href="{% url 'book_detail' book.id %}" class="detail-button">View Details</a>
+                    </div>
                 </div>
-            </div>
             {% empty %}
-            <div>No books found.</div>
+                <div>No books found.</div>
             {% endfor %}
         </div>
     </div>

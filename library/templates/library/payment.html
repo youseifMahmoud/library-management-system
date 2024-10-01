@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Library Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 5px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #45a049;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .auth-links .logout-button {
+            margin-left: 15px;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: 1px solid #fff;
+            border-radius: 30px;
+            color: white;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .auth-links .logout-button:hover {
+            background-color: #45a049;
+            border-color: #45a049;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #28a745;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1em;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 8px rgba(128, 189, 255, 0.5);
+            outline: none;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+    </style>
+    <script>
+        // Function to format card number with dashes
+        function formatCardNumber(event) {
+            let input = event.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+            let formatted = '';
+            for (let i = 0; i < input.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formatted += ' - ';
+                }
+                formatted += input[i];
+            }
+            event.target.value = formatted.trim(); // Update the input value
+        }
+
+        // Function to format expiry date to MM/YY
+        function formatExpiryDate(event) {
+            let input = event.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+            if (input.length >= 2) {
+                input = input.substring(0, 2) + '/' + input.substring(2);
+            }
+            event.target.value = input; // Update the input value
+        }
+
+        // Add event listeners for input fields on page load
+        window.onload = function() {
+            document.getElementById('card_number').addEventListener('input', formatCardNumber);
+            document.getElementById('expiry_date').addEventListener('input', formatExpiryDate);
+        };
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Library</div>
+        <div class="auth-links">
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Payment Information</h1>
+        <form method="POST" action="{% url 'complete_payment' book.id %}">
+            {% csrf_token %}
+            <label for="card_number">Visa Card Number (e.g., 1234 - 5678 - 9012 - 3456)</label>
+            <input type="text" id="card_number" name="card_number" pattern="\d{4} - \d{4} - \d{4} - \d{1,4}" placeholder="1234 - 5678 - 9012 - 3456" required>
+
+            <label for="card_name">Cardholder Name</label>
+            <input type="text" id="card_name" name="card_name" required>
+
+            <label for="expiry_date">Expiry Date (MM/YY)</label>
+            <input type="text" id="expiry_date" name="expiry_date" pattern="\d{2}/\d{2}" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV</label>
+            <input type="number" id="cvv" name="cvv" min="100" placeholder="3 digits minimum" required>
+
+            <input type="submit" value="Submit Payment">
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Library Management System</p>
+    </footer>
+</body>
+
+</html>
