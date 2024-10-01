@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,9 @@
             background-color: #f8f9fa;
             color: #495057;
             margin: 0;
-            padding: 0; 
+            padding: 0;
         }
+
         header {
             position: fixed;
             width: 100%;
@@ -24,8 +26,9 @@
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
+
         .logo {
             font-size: 28px;
             font-weight: bold;
@@ -33,13 +36,10 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-        .auth-links {
-            display: flex;
-            align-items: center;
-        }
+
         .auth-links .logout-button {
             margin-left: 15px;
-            margin-top: 10px; 
+            margin-top: 10px;
             padding: 10px 20px;
             border: 1px solid #fff;
             border-radius: 30px;
@@ -49,47 +49,36 @@
             font-size: 14px;
             transition: all 0.3s ease;
         }
+
         .auth-links .logout-button:hover {
             background-color: #45a049;
             border-color: #45a049;
         }
+
         .container {
-            max-width: 800px;
-            margin: 80px auto; 
+            max-width: 1200px;
+            margin: 80px auto;
             padding: 30px;
             background-color: #ffffff;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
+
         h1 {
             color: #28a745;
             text-align: center;
             margin-bottom: 40px;
             font-size: 2em;
         }
+
         h2 {
             color: #343a40;
             font-size: 1.5em;
             margin-top: 30px;
             margin-bottom: 20px;
         }
-        .logout-button-container {
-            text-align: center;
-            margin: 30px 0;
-        }
-        button[type="submit"] {
-            background-color: #28a745;
-            color: white;
-            padding: 12px 25px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button[type="submit"]:hover {
-            background-color: #218838;
-        }
+
+        /* Search Bar */
         input[type="text"] {
             padding: 10px;
             width: 70%;
@@ -98,6 +87,7 @@
             border-radius: 5px;
             margin-right: 10px;
         }
+
         .search-button {
             padding: 10px 20px;
             font-size: 1em;
@@ -108,33 +98,97 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .search-button:hover {
             background-color: #0069d9;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+
+        /* Book Cards Layout */
+        .book-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
         }
-        ul li {
-            background-color: #f1f3f5;
-            padding: 10px;
-            margin: 5px 0;
+
+        .book-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: 30%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .book-card img {
+            max-width: 100px;
+            height: auto;
             border-radius: 5px;
+            margin-bottom: 10px;
         }
+
+        .book-card h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .book-card p {
+            margin: 5px 0;
+            color: #495057;
+        }
+
         .action-buttons {
             margin-top: 10px;
         }
-        .action-buttons a {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 15px;
+
+        .action-buttons button {
+            padding: 8px 15px;
+            margin: 0 5px;
+            border: none;
             border-radius: 5px;
-            text-decoration: none;
-            margin-right: 10px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        .action-buttons a:hover {
-            background-color: #0056b3;
+
+        .buy-button {
+            background-color: #28a745; /* Green for Buy */
         }
+
+        .buy-button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        .rent-button {
+            background-color: #007bff; /* Blue for Rent */
+        }
+
+        .rent-button:hover {
+            background-color: #0069d9; /* Darker blue on hover */
+        }
+        .return-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .return-button:hover {
+            background-color: #dc2020; /* Darker red on hover */
+        }
+
         footer {
             text-align: center;
             margin-top: 40px;
@@ -143,6 +197,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="logo">Library</div>
@@ -166,34 +221,42 @@
 
         <!-- List of Found Books -->
         <h2>Search Results</h2>
-        <ul>
+        <div class="book-cards">
             {% for book in books %}
-                <li>
-                    {{ book.title }} by {{ book.author.name }} (ISBN: {{ book.isbn }})
-                    <div class="action-buttons">
-                        {% if book.is_sold %}
-                            <span style="color: red;">(Sold)</span>
-                        {% elif book.is_rented %}
-                            <span style="color: orange;">(Currently Rented)</span>
-                            <a href="{% url 'return_book' book.id %}">Return Book</a>  <!-- Return button -->
-                        {% else %}
-                            {% if book.is_for_sale %}
-                                <a href="{% url 'buy_or_rent_book' book.id 'buy' %}">Buy</a>
-                            {% endif %}
-                            {% if book.is_for_rent %}
-                                <a href="{% url 'buy_or_rent_book' book.id 'rent' %}">Rent</a>
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                </li>
+            <div class="book-card">
+                <img src="{{ book.image.url }}" alt="{{ book.title }}">
+                <h3>{{ book.title }}</h3>
+                <p>by {{ book.author.name }}</p>
+                <p>ISBN: {{ book.isbn }}</p>
+                <div class="action-buttons">
+                    {% if book.is_sold %}
+                    <span style="color: red;">(Sold)</span>
+                    {% elif book.is_rented %}
+                    <span style="color: orange;">(Currently Rented)</span>
+                    <form method="POST" action="{% url 'return_book' book.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="return-button">Return Book</button>
+                    </form>
+                    {% else %}
+                    {% if book.is_for_sale %}
+                        <button data-url="{% url 'buy_or_rent_book' book.id 'buy' %}" class="buy-button" onclick="location.href=this.getAttribute('data-url')">Buy</button>
+                    {% endif %}
+                    {% if book.is_for_rent %}
+                        <button data-url="{% url 'buy_or_rent_book' book.id 'rent' %}" class="rent-button" onclick="location.href=this.getAttribute('data-url')">Rent</button>
+                    {% endif %}
+
+                    {% endif %}
+                </div>
+            </div>
             {% empty %}
-                <li>No books found.</li>
+            <div>No books found.</div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
 
     <footer>
         <p>&copy; 2024 Library Management System</p>
     </footer>
 </body>
+
 </html>

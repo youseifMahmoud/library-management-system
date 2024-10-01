@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'published_date', 'isbn', 'photo']
+        fields = ['title', 'author', 'published_date', 'isbn', 'image']
 
 class AuthorForm(forms.ModelForm):
     class Meta:

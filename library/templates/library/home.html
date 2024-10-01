@@ -160,20 +160,67 @@
         </form>
 
         <!-- Add a New Book Form -->
-        <h2>Add a New Book</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ book_form.as_p }}
-            <button type="submit">Add Book</button>
-        </form>
-
-        <!-- Book Cards Layout -->
+        {% load widget_tweaks %}
+        <div class="container mt-5">
+            <h2 class="mb-4">Add a New Book</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ book_form.non_field_errors }}
+        
+                <!-- Title field -->
+                <div class="form-group row">
+                    <label for="id_title" class="col-sm-2 col-form-label">Title:</label>
+                    <div class="col-sm-10">
+                        {{ book_form.title|add_class:"form-control" }}
+                    </div>
+                </div>
+        
+                <!-- Author field -->
+                <div class="form-group row">
+                    <label for="id_author" class="col-sm-2 col-form-label">Author:</label>
+                    <div class="col-sm-10">
+                        {{ book_form.author|add_class:"form-control" }}
+                    </div>
+                </div>
+        
+                <!-- Published date field -->
+                <div class="form-group row">
+                    <label for="id_published_date" class="col-sm-2 col-form-label">Published date:</label>
+                    <div class="col-sm-10">
+                        {{ book_form.published_date|add_class:"form-control" }}
+                    </div>
+                </div>
+        
+                <!-- ISBN field -->
+                <div class="form-group row">
+                    <label for="id_isbn" class="col-sm-2 col-form-label">Isbn:</label>
+                    <div class="col-sm-10">
+                        {{ book_form.isbn|add_class:"form-control" }}
+                    </div>
+                </div>
+        
+                <!-- Image field -->
+                <div class="form-group row">
+                    <label for="id_image" class="col-sm-2 col-form-label">Image:</label>
+                    <div class="col-sm-10">
+                        {{ book_form.image|add_class:"form-control-file" }}
+                    </div>
+                </div>
+        
+                <!-- Submit button -->
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-success">Add Book</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <h2>Existing Books</h2>
         <div class="book-cards">
             {% for book in books %}
                 <div class="book-card">
-                    {% if book.photo %}
-                        <img src="{{ book.photo.url }}" alt="{{ book.title }}">
+                    {% if book.image %}
+                        <img src="{{ book.image.url }}" alt="{{ book.title }}">
                     {% else %}
                         <img src="https://m.media-amazon.com/images/I/71uiG3qqKaL.jpg" alt="Default Book Photo">
                     {% endif %}
