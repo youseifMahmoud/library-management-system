@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.db.models import Q  
 from django.contrib import messages
-from django.http import JsonResponse
+
 
 def index(request):
     return render(request, 'library/index.html')
