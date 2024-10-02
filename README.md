@@ -133,11 +133,7 @@ Templates are located in the `library/templates/library/` directory. The key tem
    │   │       └── delete_author.html  # Delete author confirmation page
    │   ├── 📁 static/                  # Static files (CSS, JS)
    │   │   ├── 📁 css/                 # CSS files
-<<<<<<< HEAD
    │   │   │    └── styles.css          # General stylesheet
-=======
-   │   │   │   └── styles.css          # General stylesheet
->>>>>>> 78e3d08ff4c0282ab125410502f76ae8405280fb
    │   │   └── 📁 js/                  # JS files
    │   │       └── main.js              # General 
    │   ├── 📄 admin.py                 # Admin configurations
@@ -147,7 +143,7 @@ Templates are located in the `library/templates/library/` directory. The key tem
    │   ├── 📄 urls.py                  # URL configurations for this app
    │   ├── 📄 views.py                 # View functions (home, login, client_page, etc.)
    │   └── 📄 tests.py                 # Unit tests for the app
-   ├── 📁 library_management/          # Main Django project directory
+   ├── 📁 library_project/             # Main Django project directory
    │   ├── 📄 __init__.py              # Project initialization
    │   ├── 📄 settings.py              # Project settings
    │   ├── 📄 urls.py                  # Root URL configurations
