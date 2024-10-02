@@ -17,7 +17,7 @@ class Book(models.Model):
     is_for_rent = models.BooleanField(default=True)
     is_sold = models.BooleanField(default=False)
     is_rented = models.BooleanField(default=False)
-    count = models.PositiveIntegerField(default=0)  # For number of copies
+    count = models.PositiveIntegerField(default=0)  
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     image = models.ImageField(upload_to='photos/', null=True, blank=True)
 
@@ -36,9 +36,10 @@ class Review(models.Model):
 
 class Transaction(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     transaction_type = models.CharField(max_length=10, choices=[('buy', 'Buy'), ('rent', 'Rent')])
     transaction_date = models.DateTimeField(auto_now_add=True)
+    quantity = models.PositiveIntegerField(default=1)  # New field to track the number of copies purchased
 
     def __str__(self):
-        return f"{self.user.username} - {self.transaction_type} - {self.book.title}"
+        return f"{self.user.username} - {self.transaction_type} - {self.book.title} - Quantity: {self.quantity}"

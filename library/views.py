@@ -171,25 +171,36 @@ def complete_payment(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     
     if request.method == 'POST':
-        # Extract the card information from the request (you could add validation here)
+        # Extract the card information from the request
         card_number = request.POST.get('card_number')
         card_name = request.POST.get('card_name')
         expiry_date = request.POST.get('expiry_date')
         cvv = request.POST.get('cvv')
         
-        # Simple validation to check if the card details are filled (expand this for real-world use)
+        # Simple validation to check if the card details are filled
         if card_number and card_name and expiry_date and cvv:
+            # Check if the user has already purchased this book
+            existing_transaction = Transaction.objects.filter(book=book, user=request.user, transaction_type='buy').exists()
+
+            if existing_transaction:
+                messages.error(request, 'You have already purchased this book.')
+                return redirect('client_page')
+
             # Assuming payment is successful, update the book's status
             if book.count > 0:
                 book.count -= 1
-                book.is_sold = True  # Mark the book as sold
+                if book.count == 0:
+                    book.is_sold = True  # Mark as sold if no copies are left
                 book.save()
                 
+                # Record the transaction
+                Transaction.objects.create(book=book, user=request.user, transaction_type='buy')
+
                 messages.success(request, 'Payment completed successfully!')
                 return render(request, 'library/payment_success.html', {'book': book})
             else:
                 messages.error(request, 'Book is out of stock.')
-                return redirect('client_page')  # Redirect if out of stock
+                return redirect('client_page')  
         else:
             # Handle payment failure (missing information)
             return render(request, 'library/payment.html', {
