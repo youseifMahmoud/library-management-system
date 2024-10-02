@@ -1,12 +1,16 @@
-# 🎓 Library Management System
+# 📚 Library Management System
 
 This project is a Django-based Library Management System. It allows users (both admin and clients) to manage books and authors, handle transactions (buying, renting, and returning books), and perform user authentication and registration.
 
 ## 🌐 Live Demo
 
-[My website](https://yousefhani.pythonanywhere.com/)
+[My website](https://yousefhany2.pythonanywhere.com/)
 
-## Features
+## Draw DataBase:
+![image](https://github.com/user-attachments/assets/ed67de0a-d027-4ec8-aff3-4a643ce416d9)
+[link Draw Database](https://dbdiagram.io/d/66e1367c550cd927ead7f960)
+
+## 🚀 Features
 
 - **Authentication**: Users can sign up, log in, and log out.
 - **User Roles**: Admin users can manage books and authors, while clients can only rent or buy books.
@@ -17,10 +21,6 @@ This project is a Django-based Library Management System. It allows users (both 
 - **Search Functionality**: Admin can search for books by title or authors by name.
 - **Session Management**: Sessions expire after 7 days of inactivity.
 
-## Installation
-
-Follow the steps below to set up and run the project locally:
-
 ## 🛠️ Tech Stack
 
 - **Backend:** Django (Python)
@@ -28,7 +28,7 @@ Follow the steps below to set up and run the project locally:
 - **Database:** PostgreSQL
 - **Version Control:** Git/GitHub
 
-### Prerequisites
+### 🎯 Prerequisites
 
 - Python 3.x
 - Django 4.x
